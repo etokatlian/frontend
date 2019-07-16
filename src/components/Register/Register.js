@@ -51,6 +51,7 @@ const Register = () => {
   return (
     <>
       <h1>Register</h1>
+      <Link to="/login">Go to Login</Link>
       <form onSubmit={handleSubmit}>
         <TextField name="firstName" label="First Name" onChange={handleChange} />
         <TextField name="lastName" label="Last Name" onChange={handleChange} />

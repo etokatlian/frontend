@@ -30,7 +30,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const Root = () => {
-  return <h1>Root</h1>;
+  return <Redirect to="/login" />;
 };
 
 const Header = () => {
