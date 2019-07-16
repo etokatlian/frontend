@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,8 +22,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         state.user.isLoggedin === true ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
-        )
+            <Redirect to="/login" />
+          )
       }
     />
   );
@@ -30,6 +31,26 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const Root = () => {
   return <h1>Root</h1>;
+};
+
+const Header = () => {
+  const { state, dispatch } = useContext(GlobalContext);
+
+  const logout = () => {
+    window.localStorage.removeItem('td_access_token');
+    dispatch({ type: 'logout_user' })
+  }
+
+  return (
+    <>
+      <h1>Header</h1>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        onClick={() => logout()} >Logout</Button>
+    </>
+  )
 };
 
 const AppRouter = () => {
@@ -41,10 +62,11 @@ const AppRouter = () => {
     if (token) {
       dispatch({ type: 'user_login_successful' });
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <Router>
+      {state.user.isLoggedin ? <Header /> : null}
       <Route path="/" exact component={Root} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />

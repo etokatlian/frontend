@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
@@ -13,10 +14,6 @@ const Login = () => {
     lastName: '',
     email: '',
     password: ''
-  });
-
-  useEffect(() => {
-    // console.log('user state: ', state);
   });
 
   const handleChange = event => {
@@ -45,10 +42,13 @@ const Login = () => {
     }
   };
 
+  if (state.user.isLoggedin) {
+    return <Redirect to="/dashboard" />
+  }
+
   return (
     <>
       <h1>Login</h1>
-      <Link to="/dashboard">Dashboard</Link>
       <form onSubmit={handleSubmit}>
         <TextField name="email" label="Email" onChange={handleChange} />
         <TextField
@@ -61,7 +61,7 @@ const Login = () => {
           type="submit"
           variant="contained"
           color="primary"
-          // onClick={() => dispatch({ type: 'user_login_successful' })}
+        // onClick={() => dispatch({ type: 'user_login_successful' })}
         >
           Login
         </Button>

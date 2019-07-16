@@ -7,17 +7,16 @@ import axios from '../../api/config';
 import { GlobalContext } from '../globalState';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
+let initialTodoState = {
+  category: '',
+  dueDate: '',
+  dateCreated: ''
+}
+
 const Dashboard = () => {
   const { state, dispatch } = useContext(GlobalContext);
-  const [newTodo, setNewTodo] = useState({
-    category: '',
-    dueDate: '',
-    dateCreated: ''
-  });
+  const [newTodo, setNewTodo] = useState(initialTodoState);
 
-  useEffect(() => {
-    // console.log('user state: ', state);
-  });
 
   const handleChange = event => {
     setNewTodo({
@@ -30,6 +29,8 @@ const Dashboard = () => {
     event.preventDefault();
     const { category, dueDate, dateCreated } = newTodo;
 
+    // need form validation
+
     try {
       let response = await axios.post('http://localhost:4000/api/todos', {
         category,
@@ -37,22 +38,24 @@ const Dashboard = () => {
         dateCreated
       });
 
-      console.log({ response });
+      setNewTodo(initialTodoState)
     } catch (err) {
       console.log('Error', err);
     }
   };
 
+  console.log('state from dashboard', state)
+
   return (
     <>
       <h1>Dashboard</h1>
-      <Link to="/dashboard">Dashboard</Link>
       <form onSubmit={handleSubmit}>
-        <TextField name="category" label="Category" onChange={handleChange} />
-        <TextField name="dueDate" label="Due Date" onChange={handleChange} />
+        <TextField name="category" label="Category" value={newTodo.category} onChange={handleChange} />
+        <TextField name="dueDate" label="Due Date" value={newTodo.dueDate} onChange={handleChange} />
         <TextField
           name="dateCreated"
           label="Date Created"
+          value={newTodo.dateCreated}
           onChange={handleChange}
         />
         <Button

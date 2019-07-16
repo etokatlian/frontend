@@ -18,6 +18,14 @@ let reducer = (state, action) => {
           isLoggedin: true
         }
       };
+    case 'logout_user':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isLoggedin: false
+        }
+      }
   }
 };
 
