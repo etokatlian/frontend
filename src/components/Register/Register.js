@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import { GlobalContext } from '../globalState';
 
-const Login = () => {
+const Register = () => {
   const { state, dispatch } = useContext(GlobalContext);
   const [loginInfo, setLoginInfo] = useState({
     firstName: '',
@@ -30,44 +30,34 @@ const Login = () => {
     event.preventDefault();
     const { firstName, lastName, email, password } = loginInfo;
 
-    try {
-      let response = await axios.post('http://localhost:4000/auth/signin', {
-        email,
-        password
-      });
-
-      if (response.data.token) {
-        window.localStorage.setItem('td_access_token', response.data.token);
-        dispatch({ type: 'user_login_successful' });
-      }
-    } catch (err) {
-      console.log('Error', err);
-    }
+    let response = await axios.post('http://localhost:4000/auth/register', {
+      firstName,
+      lastName,
+      email,
+      password
+    });
   };
 
   return (
     <>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <Link to="/dashboard">Dashboard</Link>
       <form onSubmit={handleSubmit}>
-        <TextField name="email" label="Email" onChange={handleChange} />
-        <TextField
-          name="password"
-          label="Password"
-          type="password"
-          onChange={handleChange}
-        />
+        <TextField name="firstName" onChange={handleChange} />
+        <TextField name="lastName" onChange={handleChange} />
+        <TextField name="email" onChange={handleChange} />
+        <TextField name="password" onChange={handleChange} />
         <Button
           type="submit"
           variant="contained"
           color="primary"
-          // onClick={() => dispatch({ type: 'user_login_successful' })}
+          onClick={() => dispatch({ type: 'user_login_successful' })}
         >
-          Login
+          Register
         </Button>
       </form>
     </>
   );
 };
 
-export default Login;
+export default Register;

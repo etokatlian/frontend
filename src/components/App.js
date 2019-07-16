@@ -1,10 +1,10 @@
 import React from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { teal, deepPurple, red } from '@material-ui/core/colors';
 
 import '../App.css';
 import AppRoutes from '../routes';
+import { GlobalContextProvider } from './globalState';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,9 +19,9 @@ const theme = createMuiTheme({
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <div className="App">
+      <GlobalContextProvider>
         <AppRoutes />
-      </div>
+      </GlobalContextProvider>
     </MuiThemeProvider>
   );
 }
