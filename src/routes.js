@@ -2,14 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import NewDashboard from './components/Dashboard/NewDashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import Auth from './components/Auth/Auth';
 import { GlobalContext } from './components/globalState';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { state, dispatch } = useContext(GlobalContext);
-
-  console.log('state', state);
 
   return (
     <Route
@@ -44,7 +42,7 @@ const AppRouter = () => {
     <Router>
       <Route path="/" exact component={Root} />
       <Route path="/auth" component={Auth} />
-      <PrivateRoute path="/dashboard" component={NewDashboard} />
+      <PrivateRoute path="/dashboard" component={Dashboard} />
     </Router>
   );
 };
