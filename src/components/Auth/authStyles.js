@@ -7,7 +7,7 @@ export const LoginPageWrapper = styled.div`
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(181, 221, 215, 1) 100%
+    rgba(201, 190, 221, 1) 100%
   );
 `;
 

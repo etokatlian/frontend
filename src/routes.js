@@ -1,15 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
-import Register from './components/Register/Register';
+import Auth from './components/Auth/Auth';
 import { GlobalContext } from './components/globalState';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -22,7 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         state.user.isLoggedin === true ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/auth/login" />
         )
       }
     />
@@ -30,7 +24,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const Root = () => {
-  return <Redirect to="/login" />;
+  return <Redirect to="/auth/login" />;
 };
 
 const Header = () => {
@@ -71,8 +65,7 @@ const AppRouter = () => {
     <Router>
       {state.user.isLoggedin ? <Header /> : null}
       <Route path="/" exact component={Root} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+      <Route path="/auth" component={Auth} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
     </Router>
   );
