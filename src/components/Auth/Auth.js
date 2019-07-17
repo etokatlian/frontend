@@ -8,7 +8,6 @@ import NewLogin from './Login/Login';
 
 const Auth = props => {
   if (props.location.pathname === '/auth') {
-    console.log('props', props);
     return <Redirect to="/auth/login" />;
   }
 

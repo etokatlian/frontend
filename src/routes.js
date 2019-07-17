@@ -2,12 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import Dashboard from './components/Dashboard/Dashboard';
+import NewDashboard from './components/Dashboard/NewDashboard';
 import Auth from './components/Auth/Auth';
 import { GlobalContext } from './components/globalState';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { state, dispatch } = useContext(GlobalContext);
+
+  console.log('state', state);
 
   return (
     <Route
@@ -27,29 +29,6 @@ const Root = () => {
   return <Redirect to="/auth/login" />;
 };
 
-const Header = () => {
-  const { state, dispatch } = useContext(GlobalContext);
-
-  const logout = () => {
-    window.localStorage.removeItem('td_access_token');
-    dispatch({ type: 'logout_user' });
-  };
-
-  return (
-    <>
-      <nav>Header</nav>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        onClick={() => logout()}
-      >
-        Logout
-      </Button>
-    </>
-  );
-};
-
 const AppRouter = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
@@ -63,10 +42,9 @@ const AppRouter = () => {
 
   return (
     <Router>
-      {state.user.isLoggedin ? <Header /> : null}
       <Route path="/" exact component={Root} />
       <Route path="/auth" component={Auth} />
-      <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/dashboard" component={NewDashboard} />
     </Router>
   );
 };
