@@ -48,7 +48,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <div>Dashboard</div>
       <form onSubmit={handleSubmit}>
         <TextField name="category" label="Category" value={newTodo.category} onChange={handleChange} />
         <TextField name="dueDate" label="Due Date" value={newTodo.dueDate} onChange={handleChange} />

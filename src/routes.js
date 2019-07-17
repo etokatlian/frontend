@@ -22,8 +22,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         state.user.isLoggedin === true ? (
           <Component {...props} />
         ) : (
-            <Redirect to="/login" />
-          )
+          <Redirect to="/login" />
+        )
       }
     />
   );
@@ -38,19 +38,22 @@ const Header = () => {
 
   const logout = () => {
     window.localStorage.removeItem('td_access_token');
-    dispatch({ type: 'logout_user' })
-  }
+    dispatch({ type: 'logout_user' });
+  };
 
   return (
     <>
-      <h1>Header</h1>
+      <nav>Header</nav>
       <Button
         type="submit"
         variant="contained"
         color="primary"
-        onClick={() => logout()} >Logout</Button>
+        onClick={() => logout()}
+      >
+        Logout
+      </Button>
     </>
-  )
+  );
 };
 
 const AppRouter = () => {
@@ -62,7 +65,7 @@ const AppRouter = () => {
     if (token) {
       dispatch({ type: 'user_login_successful' });
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

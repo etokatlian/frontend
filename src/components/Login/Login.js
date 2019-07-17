@@ -2,10 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { GlobalContext } from '../globalState';
+import { LoginPageWrapper, LoginLogo } from './loginStyles';
+import { StyledPaper } from '../shared/FormPaper/formPaperStyles';
+import Logo from '../../assets/todo-logo.svg';
 
 const Login = () => {
   const { state, dispatch } = useContext(GlobalContext);
@@ -43,30 +47,50 @@ const Login = () => {
   };
 
   if (state.user.isLoggedin) {
-    return <Redirect to="/dashboard" />
+    return <Redirect to="/dashboard" />;
   }
 
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <TextField name="email" label="Email" onChange={handleChange} />
-        <TextField
-          name="password"
-          label="Password"
-          type="password"
-          onChange={handleChange}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-        // onClick={() => dispatch({ type: 'user_login_successful' })}
-        >
-          Login
-        </Button>
-      </form>
-    </>
+    <LoginPageWrapper>
+      <div style={{ width: '100%', textAlign: 'center' }}>
+        <LoginLogo src={Logo} alt="" />
+        <StyledPaper>
+          <Typography color="primary" variant="h5">
+            Let's log in!
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <div style={{ margin: '10px 0' }}>
+              <TextField name="email" label="Email" onChange={handleChange} />
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <TextField
+                name="password"
+                label="Password"
+                type="password"
+                onChange={handleChange}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              Log in
+            </Button>
+          </form>
+          <div style={{ marginTop: '80px' }}>
+            <Link to="/register">
+              <Typography variant="caption">
+                Not a user yet? Sign up now!
+              </Typography>
+            </Link>
+          </div>
+        </StyledPaper>
+      </div>
+    </LoginPageWrapper>
   );
 };
 
