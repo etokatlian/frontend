@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,8 +16,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import CheckIcon from '@material-ui/icons/Check';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 import { appBarStyles } from './appbarStyles';
 
@@ -51,9 +52,6 @@ const Appbar = props => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -81,26 +79,25 @@ const Appbar = props => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+          <ListItem button>
+            <Link to="/dashboard">
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <CheckIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+            </Link>
+            <ListItemText primary={'Todos'} />
+          </ListItem>
+
+          <ListItem button>
+            <Link to="/dashboard/details">
+              <ListItemIcon>
+                <BarChartIcon />
+              </ListItemIcon>
+            </Link>
+            <ListItemText primary={'Details'} />
+          </ListItem>
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main className={classes.content}>{children}</main>
     </div>

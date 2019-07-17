@@ -22,8 +22,6 @@ const Dashboard = props => {
       handleDrawerClose={handleDrawerClose}
       drawerVisibility={drawerVisibility}
     >
-      <Link to="/dashboard/details">Go to Details page</Link>
-      <Link to="/dashboard">Go to home page</Link>
       <Route path={`${props.match.url}`} exact component={Home} />
       <Route path={`${props.match.url}/details`} component={Profile} />
     </Appbar>
