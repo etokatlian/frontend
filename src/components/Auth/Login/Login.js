@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { GlobalContext } from '../../globalState';
-import { StyledPaper } from '../../shared/FormPaper/formPaperStyles';
+import { StyledFormPaper } from '../../shared/styles/StyledFormPaper/StyledFormPaper';
 
 const Login = () => {
   const { state, dispatch } = useContext(GlobalContext);
@@ -49,7 +49,7 @@ const Login = () => {
   }
 
   return (
-    <StyledPaper>
+    <StyledFormPaper>
       <Typography color="primary" variant="h5">
         Let's log in!
       </Typography>
@@ -78,7 +78,7 @@ const Login = () => {
           </Typography>
         </Link>
       </div>
-    </StyledPaper>
+    </StyledFormPaper>
   );
 };
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { teal, deepPurple, red, pink } from '@material-ui/core/colors';
+import { deepPurple, red, pink } from '@material-ui/core/colors';
 
-import '../App.css';
 import AppRoutes from '../routes';
 import { GlobalContextProvider } from './globalState';
 

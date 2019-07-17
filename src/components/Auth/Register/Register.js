@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { GlobalContext } from '../../globalState';
-import { StyledPaper } from '../../shared/FormPaper/formPaperStyles';
-import { StyledFormRow } from '../../shared/FormRow/formRowStyles';
+import { StyledFormPaper } from '../../shared/styles/StyledFormPaper/StyledFormPaper';
+import { StyledFormRow } from '../../shared/styles/StyledFormRow/StyledFormRow';
 
 const Register = () => {
   const { state, dispatch } = useContext(GlobalContext);
@@ -50,7 +50,7 @@ const Register = () => {
   }
 
   return (
-    <StyledPaper>
+    <StyledFormPaper>
       <Typography color="primary" variant="h5">
         Sign up with email
       </Typography>
@@ -92,7 +92,7 @@ const Register = () => {
           </Typography>
         </Link>
       </div>
-    </StyledPaper>
+    </StyledFormPaper>
   );
 };
 
