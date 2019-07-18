@@ -7,7 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -19,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import CheckIcon from '@material-ui/icons/Check';
 import BarChartIcon from '@material-ui/icons/BarChart';
 
+import Avatar from '../Avatar/Avatar';
 import { appBarStyles } from './appbarStyles';
 
 const Appbar = props => {
@@ -52,6 +52,7 @@ const Appbar = props => {
           >
             <MenuIcon />
           </IconButton>
+          <Avatar />
         </Toolbar>
       </AppBar>
       <Drawer
