@@ -34,7 +34,7 @@ const AppRouter = () => {
     const token = window.localStorage.getItem('td_access_token');
 
     if (token) {
-      dispatch({ type: 'user_login_successful' });
+      dispatch({ type: 'login_user' });
     }
   }, [dispatch]);
 

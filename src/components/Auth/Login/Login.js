@@ -37,7 +37,7 @@ const Login = () => {
 
       if (response.data.token) {
         window.localStorage.setItem('td_access_token', response.data.token);
-        dispatch({ type: 'user_login_successful' });
+        dispatch({ type: 'login_user' });
       }
     } catch (err) {
       console.log('Error', err);

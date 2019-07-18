@@ -8,13 +8,13 @@ import Profile from './Profile/Profile';
 const Dashboard = props => {
   const [drawerVisibility, setDrawerVisibility] = React.useState(false);
 
-  function handleDrawerOpen() {
+  const handleDrawerOpen = () => {
     setDrawerVisibility(true);
-  }
+  };
 
-  function handleDrawerClose() {
+  const handleDrawerClose = () => {
     setDrawerVisibility(false);
-  }
+  };
 
   return (
     <Appbar

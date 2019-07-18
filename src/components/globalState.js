@@ -10,7 +10,7 @@ let initialState = {
 
 let reducer = (state, action) => {
   switch (action.type) {
-    case 'user_login_successful':
+    case 'login_user':
       return {
         ...state,
         user: {
@@ -25,7 +25,7 @@ let reducer = (state, action) => {
           ...state.user,
           isLoggedin: false
         }
-      }
+      };
   }
 };
 
